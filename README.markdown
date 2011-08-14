@@ -3,8 +3,8 @@ OryzoneBoilerplateBundle
 The OryzoneBoilerplateBundle allows you to use a twig template based on the great [HTML5 ★ Boilerplate](http://html5boilerplate.com/) 2.0 by [Paul Irish](http://paulirish.com/), [Divya Manian](http://nimbupani.com/) and many other great guys.
 So with this bundle you can easily create heavily optimized HTML5 twig templates empowered with great features such as CSS resets, CDNed jquery (with offline fallback), asynchronous google analytics script and so on.
 
-A little taste
---------------
+A little appetizer
+------------------
 Once you've added OryzoneBoilerplateBundle to your project it will be truly damn easy for you to produce an HTML5 enabled template. Here's a quick a fresh served appetizer to disclose what are you going to taste by using this bundle.
 
     {# yourMainBundle/Resources/views/Default/index.html.twig #}
