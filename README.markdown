@@ -38,8 +38,8 @@ Issues and feature requests are tracked in the [Github issue tracker](https://gi
 
 When reporting a bug, it may be a good idea to reproduce it in a basic project built using the Symfony Standard Edition to allow developers of the bundle to reproduce the issue by simply cloning it and following some steps.
 
-[documentation]: https://github.com/Oryzone/OryzoneBoilerplateBundle/blob/master/Oryzone/Bundle/BoilerplateBundle/Resources/doc/index.md  "Extended bundle documentation"
+[documentation]: https://github.com/Oryzone/OryzoneBoilerplateBundle/blob/master/Resources/doc/index.md  "Extended bundle documentation"
 
-[license]: https://github.com/Oryzone/OryzoneBoilerplateBundle/blob/master/Oryzone/Bundle/BoilerplateBundle/Resources/meta/LICENSE "MIT license"
+[license]: https://github.com/Oryzone/OryzoneBoilerplateBundle/blob/master/Resources/meta/LICENSE "MIT license"
 
 [oryzone]: http://oryzone.com "ORYZONE web site"

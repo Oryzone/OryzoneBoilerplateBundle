@@ -6,19 +6,19 @@ Have you ever wondered where to start to create an HTML5 web site by using Symfo
 
 Installation
 ------------
-The installation process is really straightforward. It follows the Symfony2 bundle setup conventions, so if you ever installed any other bundle it will pretty easy for you to proceed. If this is the first time you try to install a bundle don't be scared! We promise you will succeed at the first try!
+The installation process is really straightforward. It follows the Symfony2 bundle setup conventions, so if you ever installed any other bundle it will pretty easy for you to proceed. Otherwise, if this is the first time you try to install a bundle, don't be scared! We promise you will succeed at the first try!
 
-You've to follow only few steps (Scared? There are just 4!)
+You've to follow only few steps (Scared? There are just 3 steps!)
 
   1. Download OryzoneBoilerplateBundle
   2. Configure the Autoloader
   3. Enable the Bundle
-  4. Create your own mighty templates as extensions
 
 ### Step 1. Download OryzoneBoilerplateBundle ###
 Ultimately, the OryzoneBoilerplateBundle files should be downloaded to the `vendor/bundles/Oryzone/BoilerplateBundle` directory.
 
-This can be done at least in two different ways, depending on your preference. The first method is the standard Symfony2 method.
+This can be done at least in two different ways, depending on your preference: by using the symfony vendor script or by using git modules.
+The first method is the standard Symfony2 method.
 
 #### Using the vendors script ####
 Add the following lines in your deps file:
@@ -41,31 +41,39 @@ If you prefer instead to use git submodules, the run the following:
 
 Add the Oryzone namespace to your autoloader:
 
-<?php
-// app/autoload.php
-
-$loader->registerNamespaces(array(
-    // ...
-    'Oryzone' => __DIR__.'/../vendor/bundles',
-));
+    <?php
+    // app/autoload.php
+    
+    $loader->registerNamespaces( array(
+        // ...
+        'Oryzone' => __DIR__.'/../vendor/bundles',
+    ));
 
 ### Step 3. Enable the Bundle ###
 Finally, enable the bundle in the kernel:
 
-<?php
-// app/AppKernel.php
+    <?php
+    // app/AppKernel.php
+    
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new Oryzone\BoilerplateBundle\OryzoneBoilerplateBundle(),
+        );
+    }
 
-public function registerBundles()
-{
-    $bundles = array(
-        // ...
-        new Oryzone\BoilerplateBundle\OryzoneBoilerplateBundle(),
-    );
-}
+Create your own mighty templates as extensions
+----------------------------------------------
+This is the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of yout template:
+
+    {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+
+By doing so your template had inherited the base HTML5 structure proposed by the HTML5 Boilerplate. You'll have only to declare the content of the various blocks proposed by the template you're extending. A complete list of all the blocks will be described later. Let's see a quick and clear sample to make you hunger.
 
 Quick sample
 ------------
-Once you've added OryzoneBoilerplateBundle to your project it will be truly damn easy for you to produce an HTML5 enabled template. Here's a quick a fresh served appetizer to disclose what are you going to taste by using this bundle.
+With the following code we created a simple template for an index page. As you will see we have only extended the basic HTML5 template and redeclared the content of some blocks. The example is merely trivial if you know [twig][twig] a bit.
 
     {# yourMainBundle/Resources/views/Default/index.html.twig #}
     
@@ -112,3 +120,6 @@ To be written
 
 Going by extension
 ------------------
+To be written
+
+[twig]: http://www.twig-project.org/ "The TWIG project home page"
