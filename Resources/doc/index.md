@@ -34,7 +34,7 @@ Now, run the vendors script to download the bundle:
     $ php bin/vendors install
 
 #### Using submodules ####
-If you prefer instead to use git submodules, the run the following:
+instead, if you prefer using git submodules, just proceed by running the following git commands:
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/bundles/Oryzone/BoilerplateBundle
     $ git submodule update --init
@@ -67,7 +67,7 @@ Finally, enable the bundle in the kernel:
 
 Create your own mighty templates as extensions
 ----------------------------------------------
-This is the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of yout template:
+Now comes the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of yout template:
 
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
@@ -77,8 +77,6 @@ Quick demo
 ------------
 With the following code we created a simple template for an index page. As you will see we have only extended the basic HTML5 template and redeclared the content of some blocks. The example is merely trivial if you know [twig][twig] a bit.
 
-    {# yourMainBundle/Resources/views/Default/index.html.twig #}
-    
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
     
 	{% block head_title %}My cool HTML5 website{% endblock %}
