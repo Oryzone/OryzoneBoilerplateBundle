@@ -134,7 +134,11 @@ You can use the overwrite even to "remove" an entire block. E.g. suppose you wan
     
     {# ... #}
 
-Instead if you want to add some more stylesheet to the default one you can use the special twig function `parent()` that gets the content of the block in the parent template.
+This would be pretty useful even if, for example, you want to remove a default feature. Suppose you don't want to use jQuery. It's quite simple:
+
+    {% block body_js_jquery %}{% endblock %}
+
+Instead if you want to add some more stylesheet to the default one you can use the special twig function `parent()` that gets the content of the block from the parent template.
 
 	{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
     
