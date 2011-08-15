@@ -2,7 +2,9 @@ OryzoneBoilerplateBundle Documentation
 ======================================
 Hello folks, with OryzoneBoilerplateBundle you can easily create heavily optimized HTML5 twig templates empowered with great features such as CSS resets, CDNed jquery (with offline fallback), asynchronous google analytics script and so on.
 
-Have you ever wondered where to start to create an HTML5 web site by using Symfony2? Well you came in the right place! Let's go on! ;)
+Have you ever wondered where to start to create an HTML5 web site by using Symfony2? Yes?! Well, you came in the right place! Let's go on! ;)
+
+If you haven't ever experienced [twig][twig] and its inheritance system I heavily encourage you to [dig further](http://www.twig-project.org/doc/templates.html) before starting out with this bundle.
 
 Installation
 ------------
@@ -71,7 +73,7 @@ This is the most enjoying part, you've successfully installed the bundle and you
 
 By doing so your template had inherited the base HTML5 structure proposed by the HTML5 Boilerplate. You'll have only to declare the content of the various blocks proposed by the template you're extending. A complete list of all the blocks will be described later. Let's see a quick and clear sample to make you hunger.
 
-Quick sample
+Quick demo
 ------------
 With the following code we created a simple template for an index page. As you will see we have only extended the basic HTML5 template and redeclared the content of some blocks. The example is merely trivial if you know [twig][twig] a bit.
 
@@ -86,40 +88,70 @@ With the following code we created a simple template for an index page. As you w
 
 Available blocks
 ----------------
-  * *head*
-    * *head_meta*
-       * *head_meta_description*
-       * *head_meta_keywords*
-       * *head_meta_author*
-    * *head_title*
-    * *head_css* contiene un riferimento al reset di base
-    * *head_js* contiene un riferimento a modernizer. Tutti gli altri javascript dovrebbero essere inseriti in *body_js*
-  * *body*
-    * *body_header*
-    * *body_main*
-    * *body_footer*
-    * *body_js* to handle js at the end of the page
-      * *body_js_jquery* handles jquery 1.6.2 (from google cdn with local fallback if offline)
-        * *body_js_jquery_onlineSrc* allows you to change the url of the cdn hosted script
-        * *body_js_jquery_offlineSrc* allows you to change the path of the local jQuery script
-      * *body_js_analytics* handles google analytics script
-        * *body_js_analytics_id* uset to set the analytics id inside the script
-      * *body_js_chromeframe* handles google chrome frame for internet explorer
+The basic template structure is made of nested blocks. This template proposes a default structure, so you have to rewrite only the blocks you really need to modify (or populate). Generally, as shown in the quick demo, you'll rewrite only few of them like `head_title` and the `body_main`. The template has been tought to be flexible enough to handle most of the cases. However, if you wish to apply deep modification to the whole structure you can totally rewrite higher level blocks like `head` or `body`.
+Follows a representation of the blocks tree. Note that every block name is prefixed with the name of his ancestor blocks.
 
-Adding assets (a.k.a. *javascripts* and *stylesheets* )
--------------------------------------------------------
-To be written
+  * <strong>head</strong>
+    * <strong>head\_meta</strong>
+       * <strong>head\_meta\_description</strong>
+       * <strong>head\_meta\_keywords</strong>
+       * <strong>head\_meta\_author</strong>
+    * <strong>head\_title</strong>
+    * <strong>head\_css</strong>: Contains a reference to the basic css reset
+    * <strong>head\_js</strong>: adds modernizr script. All the other script should be added inside the <strong>body\_js</strong> block
+  * <strong>body</strong>
+    * <strong>body\_header</strong>
+    * <strong>body\_main</strong>
+    * <strong>body\_footer</strong>
+    * <strong>body\_js</strong>: to handle js at the end of the page
+      * <strong>body\_js\_jquery</strong>: handles jquery 1.6.2 (from google CDN with local fallback if offline)
+        * <strong>body\_js\_jquery\_onlineSrc</strong>: allows you to change the url of the cdn hosted script
+        * <strong>body\_js\_jquery\_offlineSrc</strong>: allows you to change the path of the local jQuery script
+      * <strong>body\_js\_analytics</strong>: handles google analytics script
+        * <strong>body\_js\_analytics\_id</strong>: uset to set the analytics id inside the script
+      * <strong>body\_js\_chromeframe</strong>: handles google chrome frame for internet explorer
 
-What the hell if i want to change the main structure of the page?
------------------------------------------------------------------
-To be written
+Two different approaches: overwrite and extend
+----------------------------------------------
+If you're alredy experienced with twig this paragraph would be pointless, so feel free to skip it on if you are confortable with twig inheritance based paradigm.
 
-Disable features
-----------------
-To be written
+Basically there are two ways to deal with a block: by complete overwriting the content of its parent block or by reusing and extending it.
 
-Going by extension
-------------------
-To be written
+For example suppose you don't want to use the default css reset included in the basic parent template and want to use your own stylesheet files. In this case you have to rewrite the whole `head_css` block. So would have something like that:
+
+    {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+    
+	{% block head_css %}
+		<link rel="stylesheet" href="myWonderful.css">
+		<link rel="stylesheet" href="someMoreBeautiful.css">
+	{% endblock %}
+    
+    {# ... #}
+
+You can use the overwrite even to "remove" an entire block. E.g. suppose you want no stylesheet, you can just create an empty `head_css` blocks:
+
+    {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+    
+	{% block head_css %}{% endblock %}
+    
+    {# ... #}
+
+Instead if you want to add some more stylesheet to the default one you can use the special twig function `parent()` that gets the content of the block in the parent template.
+
+	{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+    
+	{% block head_css %}
+	    {{ parent() }}
+		<link rel="stylesheet" href="myWonderful.css">
+		<link rel="stylesheet" href="someMoreBeautiful.css">
+	{% endblock %}
+    
+    {# ... #}
+
+Note that if you overwrite an higher level block as `head` you'll automatically overwrite all it's nested blocks as `head_title` and `head_css`. This makes twig pretty flexible because you have the full control of everything you wish to change or extend. Blocks can be considered just as starting points or suggestions on which you can build upon.
+
+Is that all?
+------------
+Yes. This should be quite enough to get you started. Anyway if you are still in trouble or if you have any question feel free to contact us at [ORYZONE](http://oryzone.com).
 
 [twig]: http://www.twig-project.org/ "The TWIG project home page"
