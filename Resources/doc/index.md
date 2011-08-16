@@ -28,7 +28,7 @@ Add the following lines in your deps file:
 
     [OryzoneBoilerplateBundle]
         git=git://github.com/Oryzone/OryzoneBoilerplateBundle.git
-        target=bundles/Oryzone/BoilerplateBundle
+        target=/bundles/Oryzone/BoilerplateBundle
 
 Now, run the vendors script to download the bundle:
 
