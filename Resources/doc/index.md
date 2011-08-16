@@ -15,6 +15,7 @@ You've to follow only few steps (Scared? There are just 3 steps!)
   1. Download OryzoneBoilerplateBundle
   2. Configure the Autoloader
   3. Enable the Bundle
+  4. (optional) Configure google analytics
 
 ### Step 1. Download OryzoneBoilerplateBundle ###
 Ultimately, the OryzoneBoilerplateBundle files should be downloaded to the `vendor/bundles/Oryzone/BoilerplateBundle` directory.
@@ -65,6 +66,14 @@ Finally, enable the bundle in the kernel:
         );
     }
 
+### Step 4 (optional). Configure Google Analytics ###
+Google analytics is disabled by default. You can easily enable it by passing your analytics id within the variable "bp_analytics_id".
+Otherwise i suggest you to set this variable directy in your configuration file among the twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
+
+    twig:
+        globals:
+            bp_analytics_id: UAXXXXXXXX1
+
 Create your own mighty templates as extensions
 ----------------------------------------------
 Now comes the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of yout template:
@@ -106,7 +115,6 @@ Follows a representation of the blocks tree. Note that every block name is prefi
         * <strong>body\_js\_jquery\_onlineSrc</strong>: allows you to change the url of the cdn hosted script
         * <strong>body\_js\_jquery\_offlineSrc</strong>: allows you to change the path of the local jQuery script
       * <strong>body\_js\_analytics</strong>: handles google analytics script
-        * <strong>body\_js\_analytics\_id</strong>: uset to set the analytics id inside the script
       * <strong>body\_js\_chromeframe</strong>: handles google chrome frame for internet explorer
 
 Two different approaches: overwrite and extend
