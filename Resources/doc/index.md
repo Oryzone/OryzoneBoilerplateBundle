@@ -68,7 +68,7 @@ Finally, enable the bundle in the kernel:
 
 ### Step 4 (optional). Configure Google Analytics ###
 Google analytics is disabled by default. You can easily enable it by passing your analytics id within the variable "bp_analytics_id".
-Otherwise i suggest you to set this variable directy in your configuration file among the twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
+Anyway I suggest you to set this variable directly in your configuration file among the twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
 
     twig:
         globals:
