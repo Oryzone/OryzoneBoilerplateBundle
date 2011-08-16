@@ -1,6 +1,6 @@
 <?php
 
-namespace Oryzone\Bundle\BoilerplateBundle\DependencyInjection;
+namespace Oryzone\BoilerplateBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -19,6 +19,10 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('oryzone_boilerplate');
+        $rootNode
+            ->children()
+                ->scalarNode('analytics_id')->defaultNull()->end()
+            ->end();
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

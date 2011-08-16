@@ -1,6 +1,6 @@
 <?php
 
-namespace Oryzone\Bundle\BoilerplateBundle\DependencyInjection;
+namespace Oryzone\BoilerplateBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
