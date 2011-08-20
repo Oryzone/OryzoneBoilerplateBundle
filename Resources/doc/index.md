@@ -10,7 +10,7 @@ Installation
 ------------
 The installation process is really straightforward. It follows the Symfony2 bundle setup conventions, so if you ever installed any other bundle it will pretty easy for you to proceed. Otherwise, if this is the first time you try to install a bundle, don't be scared! We promise you will succeed at the first try!
 
-You've to follow only few steps (Scared? There are just 3 steps!)
+You've to follow only few steps (Scared? You need just 3 steps!)
 
   1. Download OryzoneBoilerplateBundle
   2. Configure the Autoloader
@@ -117,6 +117,13 @@ Follows a representation of the blocks tree. Note that every block name is prefi
       * <strong>body\_js\_analytics</strong>: handles google analytics script
       * <strong>body\_js\_chromeframe</strong>: handles google chrome frame for internet explorer
 
+Available variables
+-------------------
+The template uses some variables that you can optionally redefine to customize its behaviour. Here's the complete list:
+
+  * <strong>bp_language</strong>: allows you to set the language of your html file. ("en" by default)
+  * <strong>bp_analytics_id</strong>: allows you to specify your google analytics id. If you don't provide a value for this variable the whole Google analytics script won't be added on the resulting page.
+
 Two different approaches: overwrite and extend
 ----------------------------------------------
 If you're alredy experienced with twig this paragraph would be pointless, so feel free to skip it on if you are confortable with twig inheritance based paradigm.
@@ -159,6 +166,16 @@ Instead if you want to add some more stylesheet to the default one you can use t
     {# ... #}
 
 Note that if you overwrite an higher level block as `head` you'll automatically overwrite all it's nested blocks as `head_title` and `head_css`. This makes twig pretty flexible because you have the full control of everything you wish to change or extend. Blocks can be considered just as starting points or suggestions on which you can build upon.
+
+Setting the page language
+-------------------------
+If you want to redefine the `lang` attribute of the `html` tag you just only have to define the `bp_language` variable from your controller.
+If you want your templates to reflect your global locale configuration you can provide a global value for bp_language by doing this way:
+
+    # Twig Configuration
+    twig:
+        globals:
+            bp_language: %locale%
 
 Is that all?
 ------------
