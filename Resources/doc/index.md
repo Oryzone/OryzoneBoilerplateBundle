@@ -123,6 +123,7 @@ The template uses some variables that you can optionally redefine to customize i
 
   * <strong>bp_language</strong>: allows you to set the language of your html file. ("en" by default)
   * <strong>bp_analytics_id</strong>: allows you to specify your google analytics id. If you don't provide a value for this variable the whole Google analytics script won't be added on the resulting page.
+  * <strong>bp_html_classes</strong>: allows you to add classes to the `html` tag.
 
 Two different approaches: overwrite and extend
 ----------------------------------------------
@@ -176,6 +177,28 @@ If you want your templates to reflect your global locale configuration you can p
     twig:
         globals:
             bp_language: %locale%
+
+Adding classes to the html tag
+------------------------------
+Sometimes is quite useful to add a class on the `html` tag. Modernizr does this all the time to let you build your css and being aware of the capabilities of the current browser.
+It's also a common practice adding classes that specify, for example, the current section, the language or other useful attributes tath can be useful to provide specific style variations on your css files.
+Suppose you want to have the navigation bar with a different background color on each page of your website. You can add a specific class on the `html` tag of every page (e.g.`class="section-home"` or `class="section-contacts"`) and then provide some css rules of this kind:
+
+    html.section-home nav
+    {
+        background-color: white;
+    }
+    
+    html.section-contacts nav
+    {
+        background-color: yellow;
+    }
+
+To specify additional classes for your head tag you must assign a value to the `bp_html_classes` variable.
+You can do so by passing a value from the controller, but, in my opinion this is not a controller duty. So it would be fairly better to set a value
+directly the template (which extends the boilerplate template). So you do something like this in your templates.
+
+    {% set bp_html_classes = "section-home" %}
 
 Is that all?
 ------------
