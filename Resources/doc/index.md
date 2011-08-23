@@ -6,8 +6,27 @@ Have you ever wondered where to start to create an HTML5 web site by using Symfo
 
 If you haven't ever experienced [twig][twig] and its inheritance system I heavily encourage you to [dig further](http://www.twig-project.org/doc/templates.html) before starting out with this bundle.
 
-Installation
-------------
+<a name="toc"></a>
+## Table of contents
+
+  * [Installation](#installation)
+    * [Step 1. Download OryzoneBoilerplateBundle](#installation-step1)
+      * [Using the vendors script](#installation-step1a)
+      * [Using submodules](#installation-step1b)
+    * [Step 2. Configure the Autoloader](#installation-step2)
+    * [Step 3. Enable the Bundle](#installation-step3)
+  * [Create your own mighty templates as extensions](#create-your-own-mighty-templates-as-extensions)
+  * [Quick demo](#quick-demo)
+  * [Available blocks](#available-blocks)
+  * [Available variables](#available-variables)
+  * [Two different approaches: overwrite and extend](#two-different-approaches)
+  * [Configure Google Analytics](#configure-google-analytics)
+  * [Setting the page language](#setting-the-page-language)
+  * [Adding classes to the html tag](#adding-classes-to-the-html-tag)
+  * [Is this all?](#is-this-all)
+
+<a name="installation"></a>
+## Installation ##
 The installation process is really straightforward. It follows the Symfony2 bundle setup conventions, so if you ever installed any other bundle it will pretty easy for you to proceed. Otherwise, if this is the first time you try to install a bundle, don't be scared! We promise you will succeed at the first try!
 
 You've to follow only few steps (Scared? You need just 3 steps!)
@@ -17,13 +36,15 @@ You've to follow only few steps (Scared? You need just 3 steps!)
   3. Enable the Bundle
   4. (optional) Configure google analytics
 
-### Step 1. Download OryzoneBoilerplateBundle ###
+<a name="installation-step1"></a>
+### Step 1. Download OryzoneBoilerplateBundle
 Ultimately, the OryzoneBoilerplateBundle files should be downloaded to the `vendor/bundles/Oryzone/BoilerplateBundle` directory.
 
 This can be done at least in two different ways, depending on your preference: by using the symfony vendor script or by using git modules.
 The first method is the standard Symfony2 method.
 
-#### Using the vendors script ####
+<a name="installation-step1a"></a>
+#### Using the vendors script
 Add the following lines in your deps file:
 
     [OryzoneBoilerplateBundle]
@@ -34,13 +55,15 @@ Now, run the vendors script to download the bundle:
 
     $ php bin/vendors install
 
-#### Using submodules ####
+<a name="installation-step1b"></a>
+#### Using submodules
 instead, if you prefer using git submodules, just proceed by running the following git commands:
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/bundles/Oryzone/BoilerplateBundle
     $ git submodule update --init
 
-### Step 2. Configure the Autoloader ###
+<a name="installation-step2"></a>
+### Step 2. Configure the Autoloader
 
 Add the Oryzone namespace to your autoloader:
 
@@ -52,7 +75,8 @@ Add the Oryzone namespace to your autoloader:
         'Oryzone' => __DIR__.'/../vendor/bundles',
     ));
 
-### Step 3. Enable the Bundle ###
+<a name="installation-step3"></a>
+### Step 3. Enable the Bundle
 Finally, enable the bundle in the kernel:
 
     <?php
@@ -66,14 +90,7 @@ Finally, enable the bundle in the kernel:
         );
     }
 
-### Step 4 (optional). Configure Google Analytics ###
-Google analytics is disabled by default. You can easily enable it by passing your analytics id within the variable "bp_analytics_id".
-Anyway I suggest you to set this variable directly in your configuration file among the twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
-
-    twig:
-        globals:
-            bp_analytics_id: UAXXXXXXXX1
-
+<a name="create-your-own-mighty-templates-as-extensions"></a>
 Create your own mighty templates as extensions
 ----------------------------------------------
 Now comes the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of yout template:
@@ -82,6 +99,7 @@ Now comes the most enjoying part, you've successfully installed the bundle and y
 
 By doing so your template had inherited the base HTML5 structure proposed by the HTML5 Boilerplate. You'll have only to declare the content of the various blocks proposed by the template you're extending. A complete list of all the blocks will be described later. Let's see a quick and clear sample to make you hunger.
 
+<a name="qucik-demo"></a>
 Quick demo
 ------------
 With the following code we created a simple template for an index page. As you will see we have only extended the basic HTML5 template and redeclared the content of some blocks. The example is merely trivial if you know [twig][twig] a bit.
@@ -93,6 +111,7 @@ With the following code we created a simple template for an index page. As you w
     {% block body_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
 	{% block body_footer %}Here we go with copyright infos{% endblock %}
 
+<a name="available-blocks"></a>
 Available blocks
 ----------------
 The basic template structure is made of nested blocks. This template proposes a default structure, so you have to rewrite only the blocks you really need to modify (or populate). Generally, as shown in the quick demo, you'll rewrite only few of them like `head_title` and the `body_main`. The template has been tought to be flexible enough to handle most of the cases. However, if you wish to apply deep modification to the whole structure you can totally rewrite higher level blocks like `head` or `body`.
@@ -117,6 +136,7 @@ Follows a representation of the blocks tree. Note that every block name is prefi
       * <strong>body\_js\_analytics</strong>: handles google analytics script
       * <strong>body\_js\_chromeframe</strong>: handles google chrome frame for internet explorer
 
+<a name="available-variables"></a>
 Available variables
 -------------------
 The template uses some variables that you can optionally redefine to customize its behaviour. Here's the complete list:
@@ -125,6 +145,7 @@ The template uses some variables that you can optionally redefine to customize i
   * <strong>bp_analytics_id</strong>: allows you to specify your google analytics id. If you don't provide a value for this variable the whole Google analytics script won't be added on the resulting page.
   * <strong>bp_html_classes</strong>: allows you to add classes to the `html` tag.
 
+<a name="two-different-approaches"></a>
 Two different approaches: overwrite and extend
 ----------------------------------------------
 If you're alredy experienced with twig this paragraph would be pointless, so feel free to skip it on if you are confortable with twig inheritance based paradigm.
@@ -168,6 +189,17 @@ Instead if you want to add some more stylesheet to the default one you can use t
 
 Note that if you overwrite an higher level block as `head` you'll automatically overwrite all it's nested blocks as `head_title` and `head_css`. This makes twig pretty flexible because you have the full control of everything you wish to change or extend. Blocks can be considered just as starting points or suggestions on which you can build upon.
 
+<a name="configure-google-analytics"></a>
+Configure Google Analytics
+--------------------------
+Google analytics is disabled by default. You can easily enable it by passing your analytics id within the variable "bp_analytics_id".
+Anyway I suggest you to set this variable directly in your configuration file among the twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
+
+    twig:
+        globals:
+            bp_analytics_id: UAXXXXXXXX1
+
+<a name="setting-the-page-language"></a>
 Setting the page language
 -------------------------
 If you want to redefine the `lang` attribute of the `html` tag you just only have to define the `bp_language` variable from your controller.
@@ -178,6 +210,7 @@ If you want your templates to reflect your global locale configuration you can p
         globals:
             bp_language: %locale%
 
+<a name="adding-classes-to-the-html-tag"></a>
 Adding classes to the html tag
 ------------------------------
 Sometimes is quite useful to add a class on the `html` tag. Modernizr does this all the time to let you build your css and being aware of the capabilities of the current browser.
@@ -200,7 +233,8 @@ directly the template (which extends the boilerplate template). So you do someth
 
     {% set bp_html_classes = "section-home" %}
 
-Is that all?
+<a name="is-this-all"></a>
+Is this all?
 ------------
 Yes. This should be quite enough to get you started. Anyway if you are still in trouble or if you have any question feel free to contact us at [ORYZONE](http://oryzone.com).
 
