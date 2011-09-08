@@ -1,8 +1,9 @@
-<!doctype html>
+{% block all %}<!doctype html>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <!--<![endif]-->
+{% block head_outer %}
 <head>
   {% block head %}
   {% block head_meta %}
@@ -29,7 +30,8 @@
   {% endblock %}
   {% endblock head %}
 </head>
-
+{% endblock head_outer %}
+{% block body_outer %}
 <body>
   {%block body%}
   <div id="container">
@@ -69,4 +71,6 @@
   {% endblock body_js %}
   {% endblock body %}
 </body>
+{% endblock body_outer %}
 </html>
+{% endblock all %}
