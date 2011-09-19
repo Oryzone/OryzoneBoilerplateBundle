@@ -34,18 +34,19 @@
 {% block body_outer %}
 <body>
   {%block body%}
+  {%block body_container%}
   <div id="container">
     <header>
-    {% block body_header %}{% endblock %}
+    {% block body_container_header %}{% endblock %}
     </header>
     <div id="main" role="main">
-    {% block body_main %}{% endblock %}
+    {% block body_container_main %}{% endblock %}
     </div>
     <footer>
-    {% block body_footer %}{% endblock %}
+    {% block body_container_footer %}{% endblock %}
     </footer>
   </div>
-
+  {%endblock body_container%}
   {% block body_js %}
   {% block body_js_jquery %}<script src="{% block body_js_jquery_onlineSrc %}//ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js{% endblock %}"></script>
   <script>window.jQuery || document.write('<script src="{% block body_js_jquery_offlineSrc %}{% javascripts '@OryzoneBoilerplateBundle/Resources/Public/js/libs/jquery-1.6.3.min.js' %}{{ asset_url }}{% endjavascripts %}{% endblock %}"><\/script>')</script>

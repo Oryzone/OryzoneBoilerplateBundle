@@ -12,9 +12,9 @@ Once you've added OryzoneBoilerplateBundle to your project it will be truly damn
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
     
 	{% block head_title %}My cool HTML5 website{% endblock %}
-    {% block body_header %}<h1>My HTML5 home page is very cool</h1>{% endblock %}
-    {% block body_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
-	{% block body_footer %}Here we go with copyright infos{% endblock %}
+    {% block body_container_header %}<h1>My HTML5 home page is very cool</h1>{% endblock %}
+    {% block body_container_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
+	{% block body_container_footer %}Here we go with copyright infos{% endblock %}
 
 Documentation
 -------------

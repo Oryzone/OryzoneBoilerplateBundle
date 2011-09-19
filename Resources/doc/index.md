@@ -107,9 +107,9 @@ With the following code we created a simple template for an index page. As you w
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
     
 	{% block head_title %}My cool HTML5 website{% endblock %}
-    {% block body_header %}<h1>My HTML5 home page is very cool</h1>{% endblock %}
-    {% block body_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
-	{% block body_footer %}Here we go with copyright infos{% endblock %}
+    {% block body_container_header %}<h1>My HTML5 home page is very cool</h1>{% endblock %}
+    {% block body_container_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
+	{% block body_container_footer %}Here we go with copyright infos{% endblock %}
 
 <a name="available-blocks"></a>
 Available blocks
@@ -126,11 +126,12 @@ Follows a representation of the blocks tree. Note that every block name is prefi
     * <strong>head\_css</strong>: Contains a reference to the basic css reset
     * <strong>head\_js</strong>: adds modernizr script. All the other script should be added inside the <strong>body\_js</strong> block
   * <strong>body</strong>
-    * <strong>body\_header</strong>
-    * <strong>body\_main</strong>
-    * <strong>body\_footer</strong>
+    * <strong>body\_container</strong>
+      * <strong>body\_container\_header</strong>
+      * <strong>body\_container\_main</strong>
+      * <strong>body\_container\_footer</strong>
     * <strong>body\_js</strong>: to handle js at the end of the page
-      * <strong>body\_js\_jquery</strong>: handles jquery 1.6.2 (from google CDN with local fallback if offline)
+      * <strong>body\_js\_jquery</strong>: handles jquery (from google CDN with local fallback if offline)
         * <strong>body\_js\_jquery\_onlineSrc</strong>: allows you to change the url of the cdn hosted script
         * <strong>body\_js\_jquery\_offlineSrc</strong>: allows you to change the path of the local jQuery script
       * <strong>body\_js\_analytics</strong>: handles google analytics script
