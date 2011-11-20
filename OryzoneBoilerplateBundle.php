@@ -1,6 +1,6 @@
 <?php
 
-namespace Oryzone\BoilerplateBundle;
+namespace Oryzone\Bundle\BoilerplateBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
