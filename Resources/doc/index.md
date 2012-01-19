@@ -1,10 +1,10 @@
 OryzoneBoilerplateBundle Documentation
 ======================================
-Hello folks, with OryzoneBoilerplateBundle you can easily create heavily optimized HTML5 twig templates empowered with great features such as CSS resets, CDNed jquery (with offline fallback), asynchronous google analytics script and so on.
+Hello folks, with OryzoneBoilerplateBundle you can easily create heavily optimized HTML5 Twig templates empowered with great features such as CSS resets, CDNed jQuery (with offline fallback), asynchronous google analytics script and so on.
 
 Have you ever wondered where to start to create an HTML5 web site by using Symfony2? Yes?! Well, you came in the right place! Let's go on! ;)
 
-If you haven't ever experienced [twig][twig] and its inheritance system I heavily encourage you to [dig further](http://www.twig-project.org/doc/templates.html) before starting out with this bundle.
+If you haven't ever experienced [Twig][twig] and its inheritance system I heavily encourage you to [dig further](http://www.twig-project.org/doc/templates.html) before starting out with this bundle.
 
 <a name="toc"></a>
 ## Table of contents
@@ -15,6 +15,7 @@ If you haven't ever experienced [twig][twig] and its inheritance system I heavil
       * [Using submodules](#installation-step1b)
     * [Step 2. Configure the Autoloader](#installation-step2)
     * [Step 3. Enable the Bundle](#installation-step3)
+    * [Step 4. Configure Assetic](#installation-step4)
   * [Create your own mighty templates as extensions](#create-your-own-mighty-templates-as-extensions)
   * [Quick demo](#quick-demo)
   * [Available blocks](#available-blocks)
@@ -29,16 +30,17 @@ If you haven't ever experienced [twig][twig] and its inheritance system I heavil
 ## Installation ##
 The installation process is really straightforward. It follows the Symfony2 bundle setup conventions, so if you ever installed any other bundle it will pretty easy for you to proceed. Otherwise, if this is the first time you try to install a bundle, don't be scared! We promise you will succeed at the first try!
 
-You've to follow only few steps (Scared? You need just 3 steps!)
+You've to follow only few steps (Scared? You need just 4 steps!)
 
   1. Download OryzoneBoilerplateBundle
   2. Configure the Autoloader
   3. Enable the Bundle
-  4. (optional) Configure google analytics
+  4. Configure Assetic
+  5. (optional) Configure google analytics
 
 <a name="installation-step1"></a>
 ### Step 1. Download OryzoneBoilerplateBundle
-Ultimately, the OryzoneBoilerplateBundle files should be downloaded to the `vendor/bundles/Oryzone/BoilerplateBundle` directory.
+Ultimately, the OryzoneBoilerplateBundle files should be downloaded to the `vendor/bundles/Oryzone/Bundle/BoilerplateBundle` directory.
 
 This can be done at least in two different ways, depending on your preference: by using the symfony vendor script or by using git modules.
 The first method is the standard Symfony2 method.
@@ -49,7 +51,7 @@ Add the following lines in your deps file:
 
     [OryzoneBoilerplateBundle]
         git=git://github.com/Oryzone/OryzoneBoilerplateBundle.git
-        target=/bundles/Oryzone/BoilerplateBundle
+        target=/bundles/Oryzone/Bundle/BoilerplateBundle
 
 Now, run the vendors script to download the bundle:
 
@@ -59,12 +61,11 @@ Now, run the vendors script to download the bundle:
 #### Using submodules
 instead, if you prefer using git submodules, just proceed by running the following git commands:
 
-    $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/bundles/Oryzone/BoilerplateBundle
+    $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/bundles/Oryzone/Bundle/BoilerplateBundle
     $ git submodule update --init
 
 <a name="installation-step2"></a>
 ### Step 2. Configure the Autoloader
-
 Add the Oryzone namespace to your autoloader:
 
     <?php
@@ -86,14 +87,25 @@ Finally, enable the bundle in the kernel:
     {
         $bundles = array(
             // ...
-            new Oryzone\BoilerplateBundle\OryzoneBoilerplateBundle(),
+            new Oryzone\Bundle\BoilerplateBundle\OryzoneBoilerplateBundle(),
         );
     }
+
+<a name="installation-step4"></a>
+### Step 4. Configure Assetic
+Make sure Assetic is configured to scan OryzoneBoilerplateBundle:
+
+    <?php
+    // app/config/config.yml
+
+    assetic:
+        // ...
+        bundles:        ["OryzoneBoilerplateBundle"]
 
 <a name="create-your-own-mighty-templates-as-extensions"></a>
 Create your own mighty templates as extensions
 ----------------------------------------------
-Now comes the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of yout template:
+Now comes the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a Twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of yout template:
 
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
@@ -102,7 +114,7 @@ By doing so your template had inherited the base HTML5 structure proposed by the
 <a name="qucik-demo"></a>
 Quick demo
 ------------
-With the following code we created a simple template for an index page. As you will see we have only extended the basic HTML5 template and redeclared the content of some blocks. The example is merely trivial if you know [twig][twig] a bit.
+With the following code we created a simple template for an index page. As you will see we have only extended the basic HTML5 template and redeclared the content of some blocks. The example is merely trivial if you know [Twig][twig] a bit.
 
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
     
@@ -131,7 +143,7 @@ Follows a representation of the blocks tree. Note that every block name is prefi
       * <strong>body\_container\_main</strong>
       * <strong>body\_container\_footer</strong>
     * <strong>body\_js</strong>: to handle js at the end of the page
-      * <strong>body\_js\_jquery</strong>: handles jquery (from google CDN with local fallback if offline)
+      * <strong>body\_js\_jquery</strong>: handles jQuery (from google CDN with local fallback if offline)
         * <strong>body\_js\_jquery\_onlineSrc</strong>: allows you to change the url of the cdn hosted script
         * <strong>body\_js\_jquery\_offlineSrc</strong>: allows you to change the path of the local jQuery script
       * <strong>body\_js\_analytics</strong>: handles google analytics script
@@ -149,7 +161,7 @@ The template uses some variables that you can optionally redefine to customize i
 <a name="two-different-approaches"></a>
 Two different approaches: overwrite and extend
 ----------------------------------------------
-If you're alredy experienced with twig this paragraph would be pointless, so feel free to skip it on if you are confortable with twig inheritance based paradigm.
+If you're alredy experienced with Twig this paragraph would be pointless, so feel free to skip it on if you are confortable with Twig inheritance based paradigm.
 
 Basically there are two ways to deal with a block: by complete overwriting the content of its parent block or by reusing and extending it.
 
@@ -176,7 +188,7 @@ This would be pretty useful even if, for example, you want to remove a default f
 
     {% block body_js_jquery %}{% endblock %}
 
-Instead if you want to add some more stylesheet to the default one you can use the special twig function `parent()` that gets the content of the block from the parent template.
+Instead if you want to add some more stylesheet to the default one you can use the special Twig function `parent()` that gets the content of the block from the parent template.
 
 	{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
     
@@ -188,13 +200,13 @@ Instead if you want to add some more stylesheet to the default one you can use t
     
     {# ... #}
 
-Note that if you overwrite an higher level block as `head` you'll automatically overwrite all it's nested blocks as `head_title` and `head_css`. This makes twig pretty flexible because you have the full control of everything you wish to change or extend. Blocks can be considered just as starting points or suggestions on which you can build upon.
+Note that if you overwrite an higher level block as `head` you'll automatically overwrite all it's nested blocks as `head_title` and `head_css`. This makes Twig pretty flexible because you have the full control of everything you wish to change or extend. Blocks can be considered just as starting points or suggestions on which you can build upon.
 
 <a name="configure-google-analytics"></a>
 Configure Google Analytics
 --------------------------
 Google analytics is disabled by default. You can easily enable it by passing your analytics id within the variable "bp_analytics_id".
-Anyway I suggest you to set this variable directly in your configuration file among the twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
+Anyway I suggest you to set this variable directly in your configuration file among the Twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
 
     twig:
         globals:
