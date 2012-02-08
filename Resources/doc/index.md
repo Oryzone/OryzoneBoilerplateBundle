@@ -133,7 +133,6 @@ Follows a representation of the blocks tree. Note that every block name is prefi
     * <strong>head\_meta</strong>
        * <strong>head\_meta\_description</strong>
        * <strong>head\_meta\_keywords</strong>
-       * <strong>head\_meta\_author</strong>
     * <strong>head\_title</strong>
     * <strong>head\_css</strong>: Contains a reference to the basic css reset
     * <strong>head\_js</strong>: adds modernizr script. All the other script should be added inside the <strong>body\_js</strong> block
