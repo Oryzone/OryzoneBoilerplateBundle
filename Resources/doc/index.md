@@ -137,6 +137,7 @@ Follows a representation of the blocks tree. Note that every block name is prefi
     * <strong>head\_css</strong>: Contains a reference to the basic css reset
     * <strong>head\_js</strong>: adds modernizr script. All the other script should be added inside the <strong>body\_js</strong> block
   * <strong>body</strong>
+    * <strong>body\_chromeframe</strong>: handles google chrome frame for internet explorer
     * <strong>body\_container</strong>
       * <strong>body\_container\_header</strong>
       * <strong>body\_container\_main</strong>
@@ -146,7 +147,6 @@ Follows a representation of the blocks tree. Note that every block name is prefi
         * <strong>body\_js\_jquery\_onlineSrc</strong>: allows you to change the url of the cdn hosted script
         * <strong>body\_js\_jquery\_offlineSrc</strong>: allows you to change the path of the local jQuery script
       * <strong>body\_js\_analytics</strong>: handles google analytics script
-      * <strong>body\_js\_chromeframe</strong>: handles google chrome frame for internet explorer
 
 <a name="available-variables"></a>
 Available variables
