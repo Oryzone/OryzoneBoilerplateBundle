@@ -1,0 +1,30 @@
+{
+  "name": "oryzone/boilerplate-bundle",
+  "type": "symfony-bundle",
+  "description": "Integrates HTML5 boilerplate in symfony2 with twig",
+  "keywords": ["html", "html5","boilerplate", "h5b", "twig"],
+  "homepage": "https://github.com/Oryzone/OryzoneBoilerplateBundle",
+  "license": "As is",
+  "authors": [
+    {
+      "name": "Luciano Mammino",
+      "email": "lmammino@oryzone.com",
+      "homepage": "http://oryzone.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Andrea Mangano",
+      "email": "amangano@oryzone.com",
+      "homepage": "http://oryzone.com",
+      "role": "Designer"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.2",
+    "symfony/framework-bundle": "2.1.*"
+  },
+  "autoload": {
+    "psr-0": { "Oryzone\\Bundle\\BoilerplateBundle": "" }
+  },
+  "target-dir": "Oryzone/Bundle/BoilerplateBundle"
+}
