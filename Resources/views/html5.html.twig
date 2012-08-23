@@ -17,7 +17,10 @@
         <title>{% block head_title %}{% endblock %}</title>
 
         {% block head_css %}
-          {% stylesheets '@OryzoneBoilerplateBundle/Resources/public/css/style.css' %}
+          {% stylesheets
+            '@OryzoneBoilerplateBundle/Resources/public/css/normalize.css' 
+            '@OryzoneBoilerplateBundle/Resources/public/css/main.css'
+          %}
             <link rel="stylesheet"  href="{{ asset_url }}" >
           {% endstylesheets %}
         {% endblock %}
