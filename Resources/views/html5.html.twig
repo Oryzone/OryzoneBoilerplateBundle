@@ -17,7 +17,10 @@
         <title>{% block head_title %}{% endblock %}</title>
 
         {% block head_css %}
-          {% stylesheets '@OryzoneBoilerplateBundle/Resources/public/css/style.css' %}
+          {% stylesheets
+            '@OryzoneBoilerplateBundle/Resources/public/css/normalize.css' 
+            '@OryzoneBoilerplateBundle/Resources/public/css/main.css'
+          %}
             <link rel="stylesheet"  href="{{ asset_url }}" >
           {% endstylesheets %}
         {% endblock %}
@@ -50,8 +53,8 @@
           </div>
         {%endblock body_container%}
         {% block body_js %}
-          {% block body_js_jquery %}<script src="{% block body_js_jquery_onlineSrc %}//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js{% endblock %}"></script>
-            <script>window.jQuery || document.write('<script src="{% block body_js_jquery_offlineSrc %}{% javascripts '@OryzoneBoilerplateBundle/Resources/public/js/libs/jquery-1.7.2.min.js' %}{{ asset_url }}{% endjavascripts %}{% endblock %}"><\/script>')</script>
+          {% block body_js_jquery %}<script src="{% block body_js_jquery_onlineSrc %}//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js{% endblock %}"></script>
+            <script>window.jQuery || document.write('<script src="{% block body_js_jquery_offlineSrc %}{% javascripts '@OryzoneBoilerplateBundle/Resources/public/js/libs/jquery-1.8.0.min.js' %}{{ asset_url }}{% endjavascripts %}{% endblock %}"><\/script>')</script>
           {% endblock body_js_jquery %}
           {% block body_js_analytics %}
             {% if bp_analytics_id is defined %}
