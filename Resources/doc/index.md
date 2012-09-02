@@ -11,8 +11,12 @@ If you haven't ever experienced [Twig][twig] and its inheritance system I heavil
 
   * [Installation](#installation)
     * [Step 1. Download OryzoneBoilerplateBundle](#installation-step1)
-      * [Using the vendors script](#installation-step1a)
-      * [Using submodules](#installation-step1b)
+      * [If you are using Symfony 2.0](#installation-step1a)
+        * [Using the vendors script](#installation-step1a1)
+        * [Using submodules](#installation-step1a2)
+      * [If you are using Symfony 2.1](#installation-step1b)
+        * [Using composer script](#installation-step1b1)
+        * [Using submodules](#installation-step1b2)
     * [Step 2. Configure the Autoloader](#installation-step2)
     * [Step 3. Enable the Bundle](#installation-step3)
     * [Step 4. Configure Assetic](#installation-step4)
@@ -40,13 +44,16 @@ You've to follow only few steps (Scared? You need just 4 steps!)
 
 <a name="installation-step1"></a>
 ### Step 1. Download OryzoneBoilerplateBundle
+
+<a name="installation-step1a"></a>
+#### If you are using Symfony 2.0
 Ultimately, the OryzoneBoilerplateBundle files should be downloaded to the `vendor/bundles/Oryzone/Bundle/BoilerplateBundle` directory.
 
 This can be done at least in two different ways, depending on your preference: by using the symfony vendor script or by using git modules.
-The first method is the standard Symfony2 method.
+The first method is the standard Symfony 2.0 method.
 
-<a name="installation-step1a"></a>
-#### Using the vendors script
+<a name="installation-step1a1"></a>
+##### Using the vendors script
 Add the following lines in your deps file:
 
     [OryzoneBoilerplateBundle]
@@ -57,11 +64,39 @@ Now, run the vendors script to download the bundle:
 
     $ php bin/vendors install
 
-<a name="installation-step1b"></a>
-#### Using submodules
+<a name="installation-step1a2"></a>
+#### #Using submodules
 instead, if you prefer using git submodules, just proceed by running the following git commands:
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/bundles/Oryzone/Bundle/BoilerplateBundle
+    $ git submodule update --init
+
+<a name="installation-step1b"></a>
+#### If you are using Symfony 2.1
+With Symfony 2.1, the OryzoneBoilerplateBundle files should be downloaded to the `vendor/oryzone/boilerplate-bundle/Oryzone/Bundle/BoilerplateBundle` directory.
+
+This can be done at least in two different ways, depending on your preference: by using the [Composer](http://getcomposer.org/) script or by using git modules.
+The first method is the standard Symfony 2.1 method.
+
+<a name="installation-step1b1"></a>
+##### Using the Composer script
+Add the following to your composer.json file:
+
+    {
+        "require": {
+            "oryzone/boilerplate-bundle": "dev-master"
+        }
+    }
+
+Update the vendor libraries:
+
+    $ php composer.phar update
+
+<a name="installation-step1b2"></a>
+#### #Using submodules
+instead, if you prefer using git submodules, just proceed by running the following git commands:
+
+    $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/oryzone/boilerplate-bundle/Oryzone/Bundle/BoilerplateBundle
     $ git submodule update --init
 
 <a name="installation-step2"></a>
@@ -70,7 +105,7 @@ Add the Oryzone namespace to your autoloader:
 
     <?php
     // app/autoload.php
-    
+
     $loader->registerNamespaces( array(
         // ...
         'Oryzone' => __DIR__.'/../vendor/bundles',
@@ -82,7 +117,7 @@ Finally, enable the bundle in the kernel:
 
     <?php
     // app/AppKernel.php
-    
+
     public function registerBundles()
     {
         $bundles = array(
@@ -117,7 +152,7 @@ Quick demo
 With the following code we created a simple template for an index page. As you will see we have only extended the basic HTML5 template and redeclared the content of some blocks. The example is merely trivial if you know [Twig][twig] a bit.
 
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
-    
+
 	{% block head_title %}My cool HTML5 website{% endblock %}
     {% block body_container_header %}<h1>My HTML5 home page is very cool</h1>{% endblock %}
     {% block body_container_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
@@ -167,20 +202,20 @@ Basically there are two ways to deal with a block: by complete overwriting the c
 For example suppose you don't want to use the default css reset included in the basic parent template and want to use your own stylesheet files. In this case you have to rewrite the whole `head_css` block. So would have something like that:
 
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
-    
+
 	{% block head_css %}
 		<link rel="stylesheet" href="myWonderful.css">
 		<link rel="stylesheet" href="someMoreBeautiful.css">
 	{% endblock %}
-    
+
     {# ... #}
 
 You can use the overwrite even to "remove" an entire block. E.g. suppose you want no stylesheet, you can just create an empty `head_css` blocks:
 
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
-    
+
 	{% block head_css %}{% endblock %}
-    
+
     {# ... #}
 
 This would be pretty useful even if, for example, you want to remove a default feature. Suppose you don't want to use jQuery. It's quite simple:
@@ -190,13 +225,13 @@ This would be pretty useful even if, for example, you want to remove a default f
 Instead if you want to add some more stylesheet to the default one you can use the special Twig function `parent()` that gets the content of the block from the parent template.
 
 	{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
-    
+
 	{% block head_css %}
 	    {{ parent() }}
 		<link rel="stylesheet" href="myWonderful.css">
 		<link rel="stylesheet" href="someMoreBeautiful.css">
 	{% endblock %}
-    
+
     {# ... #}
 
 Note that if you overwrite an higher level block as `head` you'll automatically overwrite all it's nested blocks as `head_title` and `head_css`. This makes Twig pretty flexible because you have the full control of everything you wish to change or extend. Blocks can be considered just as starting points or suggestions on which you can build upon.
@@ -233,7 +268,7 @@ Suppose you want to have the navigation bar with a different background color on
     {
         background-color: white;
     }
-    
+
     html.section-contacts nav
     {
         background-color: yellow;
