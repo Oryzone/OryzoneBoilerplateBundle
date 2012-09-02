@@ -65,7 +65,7 @@ Now, run the vendors script to download the bundle:
     $ php bin/vendors install
 
 <a name="installation-step1a2"></a>
-#### #Using submodules
+##### Using submodules
 instead, if you prefer using git submodules, just proceed by running the following git commands:
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/bundles/Oryzone/Bundle/BoilerplateBundle
@@ -93,7 +93,7 @@ Update the vendor libraries:
     $ php composer.phar update
 
 <a name="installation-step1b2"></a>
-#### #Using submodules
+##### Using submodules
 instead, if you prefer using git submodules, just proceed by running the following git commands:
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/oryzone/boilerplate-bundle/Oryzone/Bundle/BoilerplateBundle
