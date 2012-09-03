@@ -4,7 +4,7 @@
   "description": "Integrates HTML5 boilerplate in symfony2 with twig",
   "keywords": ["html", "html5","boilerplate", "h5b", "twig"],
   "homepage": "https://github.com/Oryzone/OryzoneBoilerplateBundle",
-  "license": "As is",
+  "license": "MIT",
   "authors": [
     {
       "name": "Luciano Mammino",
