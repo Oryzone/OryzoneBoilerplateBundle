@@ -1,10 +1,10 @@
 {% block all %}<!doctype html>
-  <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <![endif]-->
-  <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <![endif]-->
-  <!--[if IE 8]>    <html class="no-js lt-ie9 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <![endif]-->
-  <!--[if gt IE 8]><!--> <html class="no-js {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <!--<![endif]-->
+  <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')}}> <![endif]-->
+  <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')}}> <![endif]-->
+  <!--[if IE 8]>    <html class="no-js lt-ie9 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')}}> <![endif]-->
+  <!--[if gt IE 8]><!--> <html class="no-js {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')}}> <!--<![endif]-->
   {% block head_outer %}
-    <head {% block head_attributes %}{% endblock %}>
+    <head {{bp_head_attributes|default('')}}>
       {% block head %}
         {% block head_meta %}
           <meta charset="utf-8">
@@ -34,7 +34,7 @@
     </head>
   {% endblock head_outer %}
   {% block body_outer %}
-    <body>
+    <body {{bp_body_attributes|default('')}}>
       {%block body%}
         {% block body_chromeframe %}
           <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
