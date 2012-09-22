@@ -4,7 +4,7 @@
   <!--[if IE 8]>    <html class="no-js lt-ie9 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <![endif]-->
   <!--[if gt IE 8]><!--> <html class="no-js {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}"> <!--<![endif]-->
   {% block head_outer %}
-    <head {% block head_prefix %}{% endblock %}>
+    <head {% block head_attributes %}{% endblock %}>
       {% block head %}
         {% block head_meta %}
           <meta charset="utf-8">
