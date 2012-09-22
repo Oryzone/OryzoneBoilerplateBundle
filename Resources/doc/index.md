@@ -165,6 +165,7 @@ The basic template structure is made of nested blocks. This template proposes a 
 Follows a representation of the blocks tree. Note that every block name is prefixed with the name of his ancestor blocks.
 
   * <strong>head</strong>
+    * <strong>head\_attributes</strong>: useful to add custom attributes to the head tag (e.g. facebook `prefix` attribute)
     * <strong>head\_meta</strong>
        * <strong>head\_meta\_description</strong>
        * <strong>head\_meta\_keywords</strong>
