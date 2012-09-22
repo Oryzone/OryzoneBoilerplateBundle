@@ -165,7 +165,6 @@ The basic template structure is made of nested blocks. This template proposes a 
 Follows a representation of the blocks tree. Note that every block name is prefixed with the name of his ancestor blocks.
 
   * <strong>head</strong>
-    * <strong>head\_attributes</strong>: useful to add custom attributes to the head tag (e.g. facebook `prefix` attribute)
     * <strong>head\_meta</strong>
        * <strong>head\_meta\_description</strong>
        * <strong>head\_meta\_keywords</strong>
@@ -192,6 +191,9 @@ The template uses some variables that you can optionally redefine to customize i
   * <strong>bp_language</strong>: allows you to set the language of your html file. ("en" by default)
   * <strong>bp_analytics_id</strong>: allows you to specify your google analytics id. If you don't provide a value for this variable the whole Google analytics script won't be added on the resulting page.
   * <strong>bp_html_classes</strong>: allows you to add classes to the `html` tag.
+  * <strong>bp_html_attributes</strong>: allows you to add custom attributes to the `html` tag (e.g. `xmlns:fb="http://www.facebook.com/2008/fbml`)
+  * <strong>bp_head_attributes</strong>: allows you to add custom attributes to the `head` tag (e.g. facebook `prefix` attribute)
+  * <strong>bp_body_attributes</strong>: allows you to add custom attributes to the `body` tag
 
 <a name="two-different-approaches"></a>
 Two different approaches: overwrite and extend
