@@ -247,7 +247,7 @@ Anyway I suggest you to set this variable directly in your configuration file am
 
     twig:
         globals:
-            bp_analytics_id: UAXXXXXXXX1
+            bp_analytics_id: "UA-XXXXX-X"
 
 <a name="setting-the-page-language"></a>
 Setting the page language
