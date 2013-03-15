@@ -57,12 +57,22 @@
             <script>window.jQuery || document.write('<script src="{% block body_js_jquery_offlineSrc %}{% javascripts '@OryzoneBoilerplateBundle/Resources/public/js/vendor/jquery-1.9.0.min.js' %}{{ asset_url }}{% endjavascripts %}{% endblock %}"><\/script>')</script>
           {% endblock body_js_jquery %}
           {% block body_js_analytics %}
-            {% if bp_analytics_id is defined %}
+            {% if bp_analytics_id|default(none) %}
             <script>
-              var _gaq=[['_setAccount','{{ bp_analytics_id }}'],['_trackPageview']];
-              (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-                g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-                s.parentNode.insertBefore(g,s)}(document,'script'));
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', '{{ bp_analytics_id }}']);
+              {% if bp_analytics_domain|default(none) %}
+              _gaq.push(['_setDomainName', '{{ bp_analytics_domain }}']);
+              {% endif %}
+              {% block body_js_analytics_extra %}
+              {% endblock %}
+              _gaq.push(['_trackPageview']);
+
+              (function() {
+                  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
             </script>
             {% endif %}
           {% endblock body_js_analytics %}

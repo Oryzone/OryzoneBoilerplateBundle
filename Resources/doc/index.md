@@ -182,6 +182,7 @@ Follows a representation of the blocks tree. Note that every block name is prefi
         * <strong>body\_js\_jquery\_onlineSrc</strong>: allows you to change the url of the cdn hosted script
         * <strong>body\_js\_jquery\_offlineSrc</strong>: allows you to change the path of the local jQuery script
       * <strong>body\_js\_analytics</strong>: handles google analytics script
+        * <strong>body\_js\_analytics\_extra</strong>: allows you to add additional code (configuration) to your google analytics tracking code
 
 <a name="available-variables"></a>
 Available variables
@@ -190,6 +191,7 @@ The template uses some variables that you can optionally redefine to customize i
 
   * <strong>bp_language</strong>: allows you to set the language of your html file. ("en" by default)
   * <strong>bp_analytics_id</strong>: allows you to specify your google analytics id. If you don't provide a value for this variable the whole Google analytics script won't be added on the resulting page.
+  * <strong>bp_analytics_domain</strong>: allows you to specify your google analytics domain. Will add a `_gaq.push(['_setDomainName', '{{ bp_analytics_domain }}']);` to your google analytics tracking code.
   * <strong>bp_html_classes</strong>: allows you to add classes to the `html` tag.
   * <strong>bp_html_attributes</strong>: allows you to add custom attributes to the `html` tag (e.g. `xmlns:fb="http://www.facebook.com/2008/fbml`)
   * <strong>bp_head_attributes</strong>: allows you to add custom attributes to the `head` tag (e.g. facebook `prefix` attribute)
@@ -242,12 +244,20 @@ Note that if you overwrite an higher level block as `head` you'll automatically 
 <a name="configure-google-analytics"></a>
 Configure Google Analytics
 --------------------------
-Google analytics is disabled by default. You can easily enable it by passing your analytics id within the variable "bp_analytics_id".
-Anyway I suggest you to set this variable directly in your configuration file among the Twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
+Google analytics is disabled by default. You can easily enable it by passing your analytics id within the variable `bp_analytics_id`.
+Optionally, if track subdomains or different domains, it would be good to even set the variable `bp_analytics_domain` to the current domain you are tracking.
+Anyway I suggest you to set these variables directly in your configuration file among the Twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
 
     twig:
         globals:
             bp_analytics_id: "UA-XXXXX-X"
+            bp_analytics_domain: "example.com"
+
+If you need to pass additional configuration to your google analytics tracking code you can use the block `body_js_analytics_extra`. Follows an example:
+
+    {% block body_js_analytics_extra %}
+        _gaq.push(['_setAllowLinker', true]);
+    {% endblock %}
 
 <a name="setting-the-page-language"></a>
 Setting the page language
