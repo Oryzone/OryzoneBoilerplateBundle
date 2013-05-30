@@ -66,7 +66,7 @@
               {% endif %}
               {% block body_js_analytics_extra %}
               {% endblock %}
-              _gaq.push(['_trackPageview']);
+              {% block body_js_analytics_track %}_gaq.push(['_trackPageview']);{% endblock %}
 
               (function() {
                   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
