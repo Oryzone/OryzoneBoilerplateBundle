@@ -185,6 +185,7 @@ Follows a representation of the blocks tree. Note that every block name is prefi
         * <strong>body\_js\_jquery\_offlineSrc</strong>: allows you to change the path of the local jQuery script
       * <strong>body\_js\_analytics</strong>: handles google analytics script
         * <strong>body\_js\_analytics\_extra</strong>: allows you to add additional code (configuration) to your google analytics tracking code
+        * <strong>body\_js\_analytics\_track</strong>: allows you to easily customize the track instruction on specific templates
 
 <a name="available-variables"></a>
 Available variables
