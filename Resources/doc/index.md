@@ -94,7 +94,7 @@ Update the vendor libraries:
 
 <a name="installation-step1b2"></a>
 ##### Using submodules
-instead, if you prefer using git submodules, just proceed by running the following git commands:
+Instead, if you prefer using git submodules, just proceed by running the following git commands:
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/oryzone/boilerplate-bundle/Oryzone/Bundle/BoilerplateBundle
     $ git submodule update --init
@@ -140,7 +140,7 @@ Make sure Assetic is configured to scan OryzoneBoilerplateBundle:
 <a name="create-your-own-mighty-templates-as-extensions"></a>
 Create your own mighty templates as extensions
 ----------------------------------------------
-Now comes the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a Twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of yout template:
+Now comes the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a Twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of your template:
 
     {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
@@ -161,7 +161,7 @@ With the following code we created a simple template for an index page. As you w
 <a name="available-blocks"></a>
 Available blocks
 ----------------
-The basic template structure is made of nested blocks. This template proposes a default structure, so you have to rewrite only the blocks you really need to modify (or populate). Generally, as shown in the quick demo, you'll rewrite only few of them like `head_title` and the `body_main`. The template has been tought to be flexible enough to handle most of the cases. However, if you wish to apply deep modification to the whole structure you can totally rewrite higher level blocks like `head` or `body`.
+The basic template structure is made of nested blocks. This template proposes a default structure, so you have to rewrite only the blocks you really need to modify (or populate). Generally, as shown in the quick demo, you'll rewrite only few of them like `head_title` and the `body_main`. The template has been thought to be flexible enough to handle most of the cases. However, if you wish to apply deep modification to the whole structure you can totally rewrite higher level blocks like `head` or `body`.
 Follows a representation of the blocks tree. Note that every block name is prefixed with the name of his ancestor blocks.
 
   * <strong>head</strong>
@@ -169,7 +169,7 @@ Follows a representation of the blocks tree. Note that every block name is prefi
        * <strong>head\_meta\_description</strong>
        * <strong>head\_meta\_keywords</strong>
        * <strong>head\_meta\_viewport\_tag</strong>
-         * <strong>head\_meta\_viewport\_tag\_content</strong> 
+         * <strong>head\_meta\_viewport\_tag\_content</strong>
     * <strong>head\_title</strong>
     * <strong>head\_css</strong>: Contains a reference to the basic css reset
     * <strong>head\_js</strong>: adds modernizr script. All the other script should be added inside the <strong>body\_js</strong> block
@@ -203,7 +203,7 @@ The template uses some variables that you can optionally redefine to customize i
 <a name="two-different-approaches"></a>
 Two different approaches: overwrite and extend
 ----------------------------------------------
-If you're alredy experienced with Twig this paragraph would be pointless, so feel free to skip it on if you are confortable with Twig inheritance based paradigm.
+If you're already experienced with Twig this paragraph would be pointless, so feel free to skip it on if you are comfortable with Twig inheritance based paradigm.
 
 Basically there are two ways to deal with a block: by complete overwriting the content of its parent block or by reusing and extending it.
 
@@ -242,7 +242,7 @@ Instead if you want to add some more stylesheet to the default one you can use t
 
     {# ... #}
 
-Note that if you overwrite an higher level block as `head` you'll automatically overwrite all it's nested blocks as `head_title` and `head_css`. This makes Twig pretty flexible because you have the full control of everything you wish to change or extend. Blocks can be considered just as starting points or suggestions on which you can build upon.
+Note that if you overwrite an higher level block as `head` you'll automatically overwrite all its nested blocks as `head_title` and `head_css`. This makes Twig pretty flexible because you have the full control of everything you wish to change or extend. Blocks can be considered just as starting points or suggestions on which you can build upon.
 
 <a name="configure-google-analytics"></a>
 Configure Google Analytics
@@ -277,7 +277,7 @@ If you want your templates to reflect your global locale configuration you can p
 Adding classes to the html tag
 ------------------------------
 Sometimes is quite useful to add a class on the `html` tag. Modernizr does this all the time to let you build your css and being aware of the capabilities of the current browser.
-It's also a common practice adding classes that specify, for example, the current section, the language or other useful attributes tath can be useful to provide specific style variations on your css files.
+It's also a common practice adding classes that specify, for example, the current section, the language or other useful attributes that can be useful to provide specific style variations on your css files.
 Suppose you want to have the navigation bar with a different background color on each page of your website. You can add a specific class on the `html` tag of every page (e.g.`class="section-home"` or `class="section-contacts"`) and then provide some css rules of this kind:
 
     html.section-home nav
@@ -291,8 +291,7 @@ Suppose you want to have the navigation bar with a different background color on
     }
 
 To specify additional classes for your head tag you must assign a value to the `bp_html_classes` variable.
-You can do so by passing a value from the controller, but, in my opinion this is not a controller duty. So it would be fairly better to set a value
-directly the template (which extends the boilerplate template). So you do something like this in your templates.
+You can do so by passing a value from the controller, but, in my opinion this is not a controller duty. So it would be fairly better to set a value directly the template (which extends the boilerplate template). So you do something like this in your templates.
 
     {% set bp_html_classes = "section-home" %}
 

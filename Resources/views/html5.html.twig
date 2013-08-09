@@ -10,6 +10,7 @@
           <meta charset="utf-8">
           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
           <meta name="description" content="{% block head_meta_description %}{% endblock %}">
+          <meta name="viewport" content="width=device-width">
           <meta name="keywords" content="{% block head_meta_keywords %}{% endblock %}">
           {% block head_meta_viewport_tag %}<meta name="viewport" content="{% block head_meta_viewport_tag_content %}width=device-width{% endblock %}">{% endblock %}
         {% endblock head_meta %}
@@ -18,7 +19,7 @@
 
         {% block head_css %}
           {% stylesheets
-            '@OryzoneBoilerplateBundle/Resources/public/css/normalize.css' 
+            '@OryzoneBoilerplateBundle/Resources/public/css/normalize.css'
             '@OryzoneBoilerplateBundle/Resources/public/css/main.css'
           %}
             <link rel="stylesheet"  href="{{ asset_url }}" >
@@ -37,7 +38,9 @@
     <body {{bp_body_attributes|default('')|raw}}>
       {%block body%}
         {% block body_chromeframe %}
-          <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+          <!--[if lt IE 7]>
+              <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+          <![endif]-->
         {% endblock body_chromeframe %}
         {%block body_container%}
           <div id="container">
@@ -53,8 +56,8 @@
           </div>
         {%endblock body_container%}
         {% block body_js %}
-          {% block body_js_jquery %}<script src="{% block body_js_jquery_onlineSrc %}//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js{% endblock %}"></script>
-            <script>window.jQuery || document.write('<script src="{% block body_js_jquery_offlineSrc %}{% javascripts '@OryzoneBoilerplateBundle/Resources/public/js/vendor/jquery-1.9.0.min.js' %}{{ asset_url }}{% endjavascripts %}{% endblock %}"><\/script>')</script>
+          {% block body_js_jquery %}<script src="{% block body_js_jquery_onlineSrc %}//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js{% endblock %}"></script>
+            <script>window.jQuery || document.write('<script src="{% block body_js_jquery_offlineSrc %}{% javascripts '@OryzoneBoilerplateBundle/Resources/public/js/vendor/jquery-1.9.1.min.js' %}{{ asset_url }}{% endjavascripts %}{% endblock %}"><\/script>')</script>
           {% endblock body_js_jquery %}
           {% block body_js_analytics %}
             {% if bp_analytics_id|default(none) %}
@@ -68,11 +71,9 @@
               {% endblock %}
               {% block body_js_analytics_track %}_gaq.push(['_trackPageview']);{% endblock %}
 
-              (function() {
-                  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-              })();
+              (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+              g.src='//www.google-analytics.com/ga.js';
+              s.parentNode.insertBefore(g,s)}(document,'script'));
             </script>
             {% endif %}
           {% endblock body_js_analytics %}
