@@ -159,12 +159,23 @@ Quick demo
 With the following code we created a simple template for an index page. As you will see we have only extended the basic HTML5 template and redeclared the content of some blocks. The example is merely trivial if you know [Twig][twig] a bit.
 
 ```jinja
+{# yourMainBundle/Resources/views/Default/index.html.twig #}
+
 {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
 {% block head_title %}My cool HTML5 website{% endblock %}
-{% block body_container_header %}<h1>My HTML5 home page is very cool</h1>{% endblock %}
-{% block body_container_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
-{% block body_container_footer %}Here we go with copyright infos{% endblock %}
+
+{% block body_container_header %}
+	<h1>My HTML5 home page is very cool</h1>
+{% endblock %}
+
+{% block body_container_main %}
+	<p>This is the home page of my wild web site!</p>
+{% endblock %}
+
+{% block body_container_footer %}
+	Here we go with copyright infos
+{% endblock %}
 ```
 
 <a name="available-blocks"></a>
