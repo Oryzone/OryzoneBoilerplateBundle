@@ -14,7 +14,7 @@ If you haven't ever experienced [Twig][twig] and its inheritance system I heavil
       * [If you are using Symfony 2.0](#installation-step1a)
         * [Using the vendors script](#installation-step1a1)
         * [Using submodules](#installation-step1a2)
-      * [If you are using Symfony 2.1](#installation-step1b)
+      * [If you are using Symfony 2.1+](#installation-step1b)
         * [Using composer script](#installation-step1b1)
         * [Using submodules](#installation-step1b2)
     * [Step 2. Configure the Autoloader](#installation-step2)
@@ -72,8 +72,8 @@ instead, if you prefer using git submodules, just proceed by running the followi
     $ git submodule update --init
 
 <a name="installation-step1b"></a>
-#### If you are using Symfony 2.1
-With Symfony 2.1, the OryzoneBoilerplateBundle files should be downloaded to the `vendor/oryzone/boilerplate-bundle/Oryzone/Bundle/BoilerplateBundle` directory.
+#### If you are using Symfony 2.1+
+With Symfony 2.1+, the OryzoneBoilerplateBundle files should be downloaded to the `vendor/oryzone/boilerplate-bundle/Oryzone/Bundle/BoilerplateBundle` directory.
 
 This can be done at least in two different ways, depending on your preference: by using the [Composer](http://getcomposer.org/) script or by using git modules.
 The first method is the standard Symfony 2.1 method.
@@ -101,7 +101,7 @@ Instead, if you prefer using git submodules, just proceed by running the followi
 
 <a name="installation-step2"></a>
 ### Step 2. Configure the Autoloader
-Add the Oryzone namespace to your autoloader:
+If you installed the bundle using the git submodule approach you need to add the Oryzone namespace to your autoloader:
 
     <?php
     // app/autoload.php
