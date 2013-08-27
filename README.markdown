@@ -7,14 +7,25 @@ A little appetizer
 ------------------
 Once you've added OryzoneBoilerplateBundle to your project it will be truly damn easy for you to produce an HTML5 enabled template. Here's a quick a fresh served appetizer to disclose what are you going to taste by using this bundle.
 
-    {# yourMainBundle/Resources/views/Default/index.html.twig #}
+```jinja
+{# yourMainBundle/Resources/views/Default/index.html.twig #}
 
-    {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
-	{% block head_title %}My cool HTML5 website{% endblock %}
-    {% block body_container_header %}<h1>My HTML5 home page is very cool</h1>{% endblock %}
-    {% block body_container_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
-	{% block body_container_footer %}Here we go with copyright infos{% endblock %}
+{% block head_title %}My cool HTML5 website{% endblock %}
+
+{% block body_container_header %}
+	<h1>My HTML5 home page is very cool</h1>
+{% endblock %}
+
+{% block body_container_main %}
+	<p>This is the home page of my wild web site!</p>
+{% endblock %}
+
+{% block body_container_footer %}
+	Here we go with copyright infos
+{% endblock %}
+```
 
 Documentation
 -------------
