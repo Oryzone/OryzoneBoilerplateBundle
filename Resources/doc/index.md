@@ -82,11 +82,13 @@ The first method is the standard Symfony 2.1 method.
 ##### Using the Composer script
 Add the following to your composer.json file:
 
-    {
-        "require": {
-            "oryzone/boilerplate-bundle": "dev-master"
-        }
-    }
+```javascript
+{
+	"require": {
+    		"oryzone/boilerplate-bundle": "4.*"
+	}
+}
+```
 
 Update the vendor libraries:
 
@@ -103,46 +105,51 @@ Instead, if you prefer using git submodules, just proceed by running the followi
 ### Step 2. Configure the Autoloader
 If you installed the bundle using the git submodule approach you need to add the Oryzone namespace to your autoloader:
 
-    <?php
-    // app/autoload.php
+```php
+// app/autoload.php
 
-    $loader->registerNamespaces( array(
-        // ...
-        'Oryzone' => __DIR__.'/../vendor/bundles',
-    ));
+$loader->registerNamespaces( array(
+	// ...
+	'Oryzone' => __DIR__.'/../vendor/bundles',
+));
+```
 
 <a name="installation-step3"></a>
 ### Step 3. Enable the Bundle
 Finally, enable the bundle in the kernel:
 
-    <?php
-    // app/AppKernel.php
+```php
+// app/AppKernel.php
 
-    public function registerBundles()
-    {
-        $bundles = array(
-            // ...
-            new Oryzone\Bundle\BoilerplateBundle\OryzoneBoilerplateBundle(),
-        );
-    }
+public function registerBundles()
+{
+	$bundles = array(
+		// ...
+		new Oryzone\Bundle\BoilerplateBundle\OryzoneBoilerplateBundle(),
+	);
+}
+```
 
 <a name="installation-step4"></a>
 ### Step 4. Configure Assetic
 Make sure Assetic is configured to scan OryzoneBoilerplateBundle:
 
-    <?php
-    // app/config/config.yml
+```yaml
+#app/config/config.yml
 
-    assetic:
-        // ...
-        bundles:        ["OryzoneBoilerplateBundle"]
+assetic:
+	# ...
+	bundles:        ["OryzoneBoilerplateBundle"]
+```
 
 <a name="create-your-own-mighty-templates-as-extensions"></a>
 Create your own mighty templates as extensions
 ----------------------------------------------
 Now comes the most enjoying part, you've successfully installed the bundle and you're ready to go. Everything starts with a Twig template. If you want to create a new HTML5 powered template you've only to extend the `OryzoneBoilerplateBundle::html5.html.twig` template. So you need to put the following line at the beginning of your template:
 
-    {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+```jinja
+{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+```
 
 By doing so your template had inherited the base HTML5 structure proposed by the HTML5 Boilerplate. You'll have only to declare the content of the various blocks proposed by the template you're extending. A complete list of all the blocks will be described later. Let's see a quick and clear sample to make you hunger.
 
@@ -151,12 +158,14 @@ Quick demo
 ------------
 With the following code we created a simple template for an index page. As you will see we have only extended the basic HTML5 template and redeclared the content of some blocks. The example is merely trivial if you know [Twig][twig] a bit.
 
-    {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+```jinja
+{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
-	{% block head_title %}My cool HTML5 website{% endblock %}
-    {% block body_container_header %}<h1>My HTML5 home page is very cool</h1>{% endblock %}
-    {% block body_container_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
-	{% block body_container_footer %}Here we go with copyright infos{% endblock %}
+{% block head_title %}My cool HTML5 website{% endblock %}
+{% block body_container_header %}<h1>My HTML5 home page is very cool</h1>{% endblock %}
+{% block body_container_main %}<p>This is the home page of my wild web site!</p>{% endblock %}
+{% block body_container_footer %}Here we go with copyright infos{% endblock %}
+```
 
 <a name="available-blocks"></a>
 Available blocks
@@ -209,38 +218,46 @@ Basically there are two ways to deal with a block: by complete overwriting the c
 
 For example suppose you don't want to use the default css reset included in the basic parent template and want to use your own stylesheet files. In this case you have to rewrite the whole `head_css` block. So would have something like that:
 
-    {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+```jinja
+{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
-	{% block head_css %}
-		<link rel="stylesheet" href="myWonderful.css">
-		<link rel="stylesheet" href="someMoreBeautiful.css">
-	{% endblock %}
+{% block head_css %}
+	<link rel="stylesheet" href="myWonderful.css">
+	<link rel="stylesheet" href="someMoreBeautiful.css">
+{% endblock %}
 
-    {# ... #}
+{# ... #}
+```
 
 You can use the overwrite even to "remove" an entire block. E.g. suppose you want no stylesheet, you can just create an empty `head_css` blocks:
 
-    {% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+```jinja
+{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
-	{% block head_css %}{% endblock %}
+{% block head_css %}{% endblock %}
 
-    {# ... #}
+{# ... #}
+```
 
 This would be pretty useful even if, for example, you want to remove a default feature. Suppose you don't want to use jQuery. It's quite simple:
 
-    {% block body_js_jquery %}{% endblock %}
+```jinja
+{% block body_js_jquery %}{% endblock %}
+```
 
 Instead if you want to add some more stylesheet to the default one you can use the special Twig function `parent()` that gets the content of the block from the parent template.
 
-	{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
+```jinja
+{% extends "OryzoneBoilerplateBundle::html5.html.twig" %}
 
-	{% block head_css %}
-	    {{ parent() }}
-		<link rel="stylesheet" href="myWonderful.css">
-		<link rel="stylesheet" href="someMoreBeautiful.css">
-	{% endblock %}
+{% block head_css %}
+	{{ parent() }}
+	<link rel="stylesheet" href="myWonderful.css">
+	<link rel="stylesheet" href="someMoreBeautiful.css">
+{% endblock %}
 
-    {# ... #}
+{# ... #}
+```
 
 Note that if you overwrite an higher level block as `head` you'll automatically overwrite all its nested blocks as `head_title` and `head_css`. This makes Twig pretty flexible because you have the full control of everything you wish to change or extend. Blocks can be considered just as starting points or suggestions on which you can build upon.
 
@@ -251,16 +268,20 @@ Google analytics is disabled by default. You can easily enable it by passing you
 Optionally, if track subdomains or different domains, it would be good to even set the variable `bp_analytics_domain` to the current domain you are tracking.
 Anyway I suggest you to set these variables directly in your configuration file among the Twig global variables. This way you have the opportunity to specify an id on the environments you prefer to: for example you may want to not use analytics on development but to use it in production, so just add the following lines on your `config_prod.yml` file
 
-    twig:
-        globals:
-            bp_analytics_id: "UA-XXXXX-X"
-            bp_analytics_domain: "example.com"
+```yaml
+twig:
+	globals:
+		bp_analytics_id: "UA-XXXXX-X"
+		bp_analytics_domain: "example.com"
+```
 
 If you need to pass additional configuration to your google analytics tracking code you can use the block `body_js_analytics_extra`. Follows an example:
 
-    {% block body_js_analytics_extra %}
-        _gaq.push(['_setAllowLinker', true]);
-    {% endblock %}
+```jinja
+{% block body_js_analytics_extra %}
+	_gaq.push(['_setAllowLinker', true]);
+{% endblock %}
+```
 
 <a name="setting-the-page-language"></a>
 Setting the page language
@@ -268,10 +289,12 @@ Setting the page language
 If you want to redefine the `lang` attribute of the `html` tag you just only have to define the `bp_language` variable from your controller.
 If you want your templates to reflect your global locale configuration you can provide a global value for bp_language by doing this way:
 
-    # Twig Configuration
-    twig:
-        globals:
-            bp_language: %locale%
+```yaml
+# Twig Configuration
+twig:
+	globals:
+		bp_language: %locale%
+```
 
 <a name="adding-classes-to-the-html-tag"></a>
 Adding classes to the html tag
@@ -280,20 +303,24 @@ Sometimes is quite useful to add a class on the `html` tag. Modernizr does this 
 It's also a common practice adding classes that specify, for example, the current section, the language or other useful attributes that can be useful to provide specific style variations on your css files.
 Suppose you want to have the navigation bar with a different background color on each page of your website. You can add a specific class on the `html` tag of every page (e.g.`class="section-home"` or `class="section-contacts"`) and then provide some css rules of this kind:
 
-    html.section-home nav
-    {
-        background-color: white;
-    }
+```css
+html.section-home nav
+{
+	background-color: white;
+}
 
-    html.section-contacts nav
-    {
-        background-color: yellow;
-    }
+html.section-contacts nav
+{
+	background-color: yellow;
+}
+```
 
 To specify additional classes for your head tag you must assign a value to the `bp_html_classes` variable.
 You can do so by passing a value from the controller, but, in my opinion this is not a controller duty. So it would be fairly better to set a value directly the template (which extends the boilerplate template). So you do something like this in your templates.
 
-    {% set bp_html_classes = "section-home" %}
+```jinja
+{% set bp_html_classes = "section-home" %}
+```
 
 <a name="is-this-all"></a>
 Is this all?
