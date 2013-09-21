@@ -53,7 +53,7 @@ This can be done at least in two different ways, depending on your preference: b
 The first method is the standard Symfony 2.0 method.
 
 <a name="installation-step1a1"></a>
-##### Using the vendors script
+##### Using the vendors script with submodules for components dependencies
 Add the following lines in your deps file:
 
     [OryzoneBoilerplateBundle]
@@ -64,11 +64,23 @@ Now, run the vendors script to download the bundle:
 
     $ php bin/vendors install
 
+And proceed dependencies installation with the following git commands ("web" must be the name of your symfony web directory):
+
+    $ git submodule add git://github.com/components/html5-boilerplate.git web/components/html5-boilerplate
+    $ git submodule add git://github.com/components/jquery.git web/components/jquery
+    $ git submodule add git://github.com/components/modernizr.git web/components/modernizr
+    $ git submodule add git://github.com/components/normalize.css.git web/components/normalize.css
+    $ git submodule update --init
+
 <a name="installation-step1a2"></a>
 ##### Using submodules
-instead, if you prefer using git submodules, just proceed by running the following git commands:
+instead, if you prefer using only git submodules, just proceed by running the following git commands ("web" must be the name of your symfony web directory):
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/bundles/Oryzone/Bundle/BoilerplateBundle
+    $ git submodule add git://github.com/components/html5-boilerplate.git web/components/html5-boilerplate
+    $ git submodule add git://github.com/components/jquery.git web/components/jquery
+    $ git submodule add git://github.com/components/modernizr.git web/components/modernizr
+    $ git submodule add git://github.com/components/normalize.css.git web/components/normalize.css
     $ git submodule update --init
 
 <a name="installation-step1b"></a>
@@ -80,25 +92,34 @@ The first method is the standard Symfony 2.1 method.
 
 <a name="installation-step1b1"></a>
 ##### Using the Composer script
-Add the following to your composer.json file:
+Add the following to your composer.json file ("web" must be the name of your symfony web directory):
 
 ```javascript
 {
-	"require": {
-    		"oryzone/boilerplate-bundle": "4.*"
-	}
+    "require": {
+        "oryzone/boilerplate-bundle": "4.*"
+    },
+    //
+    "config": {
+        "component-dir": "web/components",
+        "component-baseurl": "/components"
+    },
 }
 ```
 
 Update the vendor libraries:
 
-    $ php composer.phar update
+    $ php composer.phar update oryzone/boilerplate-bundle
 
 <a name="installation-step1b2"></a>
 ##### Using submodules
-Instead, if you prefer using git submodules, just proceed by running the following git commands:
+Instead, if you prefer using git submodules, just proceed by running the following git commands ("web" must be the name of your symfony web directory):
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/oryzone/boilerplate-bundle/Oryzone/Bundle/BoilerplateBundle
+    $ git submodule add git://github.com/components/html5-boilerplate.git web/components/html5-boilerplate
+    $ git submodule add git://github.com/components/jquery.git web/components/jquery
+    $ git submodule add git://github.com/components/modernizr.git web/components/modernizr
+    $ git submodule add git://github.com/components/normalize.css.git web/components/normalize.css
     $ git submodule update --init
 
 <a name="installation-step2"></a>

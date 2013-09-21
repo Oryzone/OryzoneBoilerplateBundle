@@ -21,7 +21,8 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "symfony/framework-bundle": ">=2.0,<3.0-dev"
+        "symfony/framework-bundle": ">=2.0,<3.0-dev",
+        "components/html5-boilerplate": "*"
     },
     "autoload": {
         "psr-0": { "Oryzone\\Bundle\\BoilerplateBundle": "" }
@@ -29,7 +30,7 @@
     "target-dir": "Oryzone/Bundle/BoilerplateBundle",
     "extra": {
         "branch-alias": {
-            "dev-master": "4.2.x-dev"
+            "dev-master": "4.3.x-dev"
         }
     }
 }
