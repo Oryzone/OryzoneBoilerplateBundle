@@ -1,83 +1,80 @@
 {% block all %}<!doctype html>
-  <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')|raw}}> <![endif]-->
-  <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')|raw}}> <![endif]-->
-  <!--[if IE 8]>    <html class="no-js lt-ie9 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')|raw}}> <![endif]-->
-  <!--[if gt IE 8]><!--> <html class="no-js {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')|raw}}> <!--<![endif]-->
-  {% block head_outer %}
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')|raw}}><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')|raw}}><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9 {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')|raw}}><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js {{bp_html_classes|default('')}}" lang="{{bp_language|default('en')}}" {{bp_html_attributes|default('')|raw}}><!--<![endif]-->
+{% block head_outer %}
     <head {{bp_head_attributes|default('')|raw}}>
-      {% block head %}
-        {% block head_meta %}
-          <meta charset="utf-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-          <meta name="description" content="{% block head_meta_description %}{% endblock %}">
-          <meta name="keywords" content="{% block head_meta_keywords %}{% endblock %}">
-          {% block head_meta_viewport_tag %}<meta name="viewport" content="{% block head_meta_viewport_tag_content %}width=device-width{% endblock %}">{% endblock %}
-        {% endblock head_meta %}
+        {% block head %}
+            {% block head_meta %}
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="description" content="{% block head_meta_description %}{% endblock %}">
+                <meta name="keywords" content="{% block head_meta_keywords %}{% endblock %}">
+                {% block head_meta_viewport_tag %}<meta name="viewport" content="{% block head_meta_viewport_tag_content %}width=device-width, initial-scale=1{% endblock %}">{% endblock %}
+            {% endblock head_meta %}
 
-        <title>{% block head_title %}{% endblock %}</title>
+            <title>{% block head_title %}{% endblock %}</title>
 
-        {% block head_css %}
-          {% stylesheets
-            '@OryzoneBoilerplateBundle/Resources/public/css/normalize.css'
-            '@OryzoneBoilerplateBundle/Resources/public/css/main.css'
-          %}
+            {% block head_css %}
+                {% stylesheets
+                'components/normalize.css/normalize.css'
+                'components/html5-boilerplate/css/main.css'
+                %}
             <link rel="stylesheet"  href="{{ asset_url }}" >
-          {% endstylesheets %}
-        {% endblock %}
+                {% endstylesheets %}
+            {% endblock %}
 
-        {% block head_js %}
-          {% javascripts '@OryzoneBoilerplateBundle/Resources/public/js/vendor/modernizr-2.6.2.min.js' %}
-            <script src="{{ asset_url }}"></script>
-          {% endjavascripts %}
-        {% endblock %}
-      {% endblock head %}
+            {% block head_js %}
+                {% javascripts 'components/modernizr/modernizr.js' %}
+                <script src="{{ asset_url }}"></script>
+                {% endjavascripts %}
+            {% endblock %}
+        {% endblock head %}
     </head>
-  {% endblock head_outer %}
-  {% block body_outer %}
+{% endblock head_outer %}
+{% block body_outer %}
     <body {{bp_body_attributes|default('')|raw}}>
-      {%block body%}
+    {%block body%}
         {% block body_chromeframe %}
-          <!--[if lt IE 7]>
-              <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-          <![endif]-->
+            <!--[if lt IE 7]>
+                <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            <![endif]-->
         {% endblock body_chromeframe %}
         {%block body_container%}
-          <div id="container">
-            <header>
-              {% block body_container_header %}{% endblock %}
-            </header>
-            <div role="main">
-              {% block body_container_main %}{% endblock %}
+            <div id="container">
+                <header>
+                    {% block body_container_header %}{% endblock %}
+                </header>
+                <div role="main">
+                    {% block body_container_main %}{% endblock %}
+                </div>
+                <footer>
+                    {% block body_container_footer %}{% endblock %}
+                </footer>
             </div>
-            <footer>
-              {% block body_container_footer %}{% endblock %}
-            </footer>
-          </div>
         {%endblock body_container%}
         {% block body_js %}
-          {% block body_js_jquery %}<script src="{% block body_js_jquery_onlineSrc %}//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js{% endblock %}"></script>
-            <script>window.jQuery || document.write('<script src="{% block body_js_jquery_offlineSrc %}{% javascripts '@OryzoneBoilerplateBundle/Resources/public/js/vendor/jquery-1.9.1.min.js' %}{{ asset_url }}{% endjavascripts %}{% endblock %}"><\/script>')</script>
-          {% endblock body_js_jquery %}
-          {% block body_js_analytics %}
-            {% if bp_analytics_id|default(none) %}
-            <script>
-              var _gaq = _gaq || [];
-              _gaq.push(['_setAccount', '{{ bp_analytics_id }}']);
-              {% if bp_analytics_domain|default(none) %}
-              _gaq.push(['_setDomainName', '{{ bp_analytics_domain }}']);
-              {% endif %}
-              {% block body_js_analytics_extra %}
-              {% endblock %}
-              {% block body_js_analytics_track %}_gaq.push(['_trackPageview']);{% endblock %}
-
-              (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-              g.src='//www.google-analytics.com/ga.js';
-              s.parentNode.insertBefore(g,s)}(document,'script'));
-            </script>
-            {% endif %}
-          {% endblock body_js_analytics %}
+            {% block body_js_jquery %}<script src="{% block body_js_jquery_onlineSrc %}//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js{% endblock %}"></script>
+                <script>window.jQuery || document.write('<script src="{% block body_js_jquery_offlineSrc %}{% javascripts 'components/jquery/jquery.min.js' %}{{ asset_url }}{% endjavascripts %}{% endblock %}"><\/script>')</script>
+            {% endblock body_js_jquery %}
+            {% block body_js_analytics %}
+                {% if bp_analytics_id|default(none) %}
+                    <script>
+                        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+                        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+                        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+                        e.src='//www.google-analytics.com/analytics.js';
+                        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+                        var gao=gao||{};
+                        {% if bp_analytics_domain|default(none) %}gao.cookieDomain='{{ bp_analytics_domain }}';{% endif %}
+                        {% block body_js_analytics_extra %}{% endblock %}
+                        ga('create','{{ bp_analytics_id }}',gao);{% block body_js_analytics_track %}ga('send','pageview');{% endblock %}
+                    </script>
+                {% endif %}
+            {% endblock body_js_analytics %}
         {% endblock body_js %}
-      {% endblock body %}
+    {% endblock body %}
     </body>
-  {% endblock body_outer %}
+{% endblock body_outer %}
 </html>{% endblock all %}

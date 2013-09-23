@@ -53,7 +53,7 @@ This can be done at least in two different ways, depending on your preference: b
 The first method is the standard Symfony 2.0 method.
 
 <a name="installation-step1a1"></a>
-##### Using the vendors script
+##### Using the vendors script with submodules for components dependencies
 Add the following lines in your deps file:
 
     [OryzoneBoilerplateBundle]
@@ -64,11 +64,23 @@ Now, run the vendors script to download the bundle:
 
     $ php bin/vendors install
 
+And proceed dependencies installation with the following git commands ("web" must be the name of your symfony web directory):
+
+    $ git submodule add git://github.com/components/html5-boilerplate.git web/components/html5-boilerplate
+    $ git submodule add git://github.com/components/jquery.git web/components/jquery
+    $ git submodule add git://github.com/components/modernizr.git web/components/modernizr
+    $ git submodule add git://github.com/components/normalize.css.git web/components/normalize.css
+    $ git submodule update --init
+
 <a name="installation-step1a2"></a>
 ##### Using submodules
-instead, if you prefer using git submodules, just proceed by running the following git commands:
+instead, if you prefer using only git submodules, just proceed by running the following git commands ("web" must be the name of your symfony web directory):
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/bundles/Oryzone/Bundle/BoilerplateBundle
+    $ git submodule add git://github.com/components/html5-boilerplate.git web/components/html5-boilerplate
+    $ git submodule add git://github.com/components/jquery.git web/components/jquery
+    $ git submodule add git://github.com/components/modernizr.git web/components/modernizr
+    $ git submodule add git://github.com/components/normalize.css.git web/components/normalize.css
     $ git submodule update --init
 
 <a name="installation-step1b"></a>
@@ -80,25 +92,34 @@ The first method is the standard Symfony 2.1 method.
 
 <a name="installation-step1b1"></a>
 ##### Using the Composer script
-Add the following to your composer.json file:
+Add the following to your composer.json file ("web" must be the name of your symfony web directory):
 
 ```javascript
 {
-	"require": {
-    		"oryzone/boilerplate-bundle": "4.*"
-	}
+    "require": {
+        "oryzone/boilerplate-bundle": "4.*"
+    },
+    //
+    "config": {
+        "component-dir": "web/components",
+        "component-baseurl": "/components"
+    },
 }
 ```
 
 Update the vendor libraries:
 
-    $ php composer.phar update
+    $ php composer.phar update oryzone/boilerplate-bundle
 
 <a name="installation-step1b2"></a>
 ##### Using submodules
-Instead, if you prefer using git submodules, just proceed by running the following git commands:
+Instead, if you prefer using git submodules, just proceed by running the following git commands ("web" must be the name of your symfony web directory):
 
     $ git submodule add git://github.com/Oryzone/OryzoneBoilerplateBundle.git vendor/oryzone/boilerplate-bundle/Oryzone/Bundle/BoilerplateBundle
+    $ git submodule add git://github.com/components/html5-boilerplate.git web/components/html5-boilerplate
+    $ git submodule add git://github.com/components/jquery.git web/components/jquery
+    $ git submodule add git://github.com/components/modernizr.git web/components/modernizr
+    $ git submodule add git://github.com/components/normalize.css.git web/components/normalize.css
     $ git submodule update --init
 
 <a name="installation-step2"></a>
@@ -214,7 +235,7 @@ The template uses some variables that you can optionally redefine to customize i
 
   * <strong>bp_language</strong>: allows you to set the language of your html file. ("en" by default)
   * <strong>bp_analytics_id</strong>: allows you to specify your google analytics id. If you don't provide a value for this variable the whole Google analytics script won't be added on the resulting page.
-  * <strong>bp_analytics_domain</strong>: allows you to specify your google analytics domain. Will add a `_gaq.push(['_setDomainName', '{{ bp_analytics_domain }}']);` to your google analytics tracking code.
+  * <strong>bp_analytics_domain</strong>: allows you to specify your google analytics domain. Will add a `gao.cookieDomain='{{ bp_analytics_domain }}';` to your google analytics tracking code.
   * <strong>bp_html_classes</strong>: allows you to add classes to the `html` tag.
   * <strong>bp_html_attributes</strong>: allows you to add custom attributes to the `html` tag (e.g. `xmlns:fb="http://www.facebook.com/2008/fbml`)
   * <strong>bp_head_attributes</strong>: allows you to add custom attributes to the `head` tag (e.g. facebook `prefix` attribute)
@@ -290,7 +311,7 @@ If you need to pass additional configuration to your google analytics tracking c
 
 ```jinja
 {% block body_js_analytics_extra %}
-	_gaq.push(['_setAllowLinker', true]);
+	gao.allowLinker=true;
 {% endblock %}
 ```
 
