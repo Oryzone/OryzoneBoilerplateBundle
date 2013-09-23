@@ -235,7 +235,7 @@ The template uses some variables that you can optionally redefine to customize i
 
   * <strong>bp_language</strong>: allows you to set the language of your html file. ("en" by default)
   * <strong>bp_analytics_id</strong>: allows you to specify your google analytics id. If you don't provide a value for this variable the whole Google analytics script won't be added on the resulting page.
-  * <strong>bp_analytics_domain</strong>: allows you to specify your google analytics domain. Will add a `_gaq.push(['_setDomainName', '{{ bp_analytics_domain }}']);` to your google analytics tracking code.
+  * <strong>bp_analytics_domain</strong>: allows you to specify your google analytics domain. Will add a `gao.cookieDomain='{{ bp_analytics_domain }}';` to your google analytics tracking code.
   * <strong>bp_html_classes</strong>: allows you to add classes to the `html` tag.
   * <strong>bp_html_attributes</strong>: allows you to add custom attributes to the `html` tag (e.g. `xmlns:fb="http://www.facebook.com/2008/fbml`)
   * <strong>bp_head_attributes</strong>: allows you to add custom attributes to the `head` tag (e.g. facebook `prefix` attribute)
@@ -311,7 +311,7 @@ If you need to pass additional configuration to your google analytics tracking c
 
 ```jinja
 {% block body_js_analytics_extra %}
-	_gaq.push(['_setAllowLinker', true]);
+	gao.allowLinker=true;
 {% endblock %}
 ```
 
